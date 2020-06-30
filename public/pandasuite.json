@@ -3,55 +3,58 @@
     "main": "",
   
     "system": {
-      "localization": false,
-      "actions": [
-        {
-          "id": "toMarker",
-          "name": "Change Image",
-          "locale_name": {
-            "fr_FR": "Change Image"
-          },
-          "params": [
-            { "id": "useless", "name": "Useless", "locale_name": {"fr_FR": "Inutile"}, "type": "Boolean" }
-          ]
-        }
-      ],
-      "events": [
-        {
-          "id": "triggerMarker",
-          "name": "Image",
-          "locale_name": {
-            "fr_FR": "Image"
-          }
-        }
-      ],
-      "markers": [
-        {
-          "params": [
-            { "id": "src", "name": "Source", "locale_name": {"fr_FR": "Source"}, "type": "String" }
-          ]
-        }
-      ]
+      "markers": false
     },
 
     "properties": [
       {
-        "id": "searchTerm",
-        "name": "Search Term",
+        "id": "source",
+        "name": "Source",
         "locale_name": {
-          "fr_FR": "Terme de recherche"
+          "fr_FR": "Source"
         },
-        "type": "String",
-        "value": "panda"
+        "type": "String"
+      },
+      {
+        "id": "isCaseSensitive",
+        "name": "Case sensitive",
+        "locale_name": {
+          "fr_FR": "Sensible à la casse"
+        },
+        "type": "Boolean",
+        "value": false
+      },
+      {
+        "id": "threshold",
+        "name": "Matching threshold",
+        "locale_name": {
+          "fr_FR": "Seuil de correspondance"
+        },
+        "type": "Float",
+        "value": 0.6
+      },
+      {
+        "id": "useExtendedSearch",
+        "name": "Extended search",
+        "locale_name": {
+          "fr_FR": "Recherche étendue"
+        },
+        "type": "Boolean",
+        "value": false,
+        "separator": true
+      },
+      {
+        "id": "keys",
+        "hidden": true
       }
     ],
   
     "events": [
       {
-        "id": "imageChanged",
-        "name": "Image Changed",
+        "id": "newSearchResults",
+        "name": "New search results",
         "locale_name": {
-          "fr_FR": "Image Changée"
+          "fr_FR": "Nouveaux résultats de recherche"
         }
       }
     ],
@@ -71,28 +74,6 @@
             "value": "#FFFFFF"
           }
         ]
-      }
-    ],
-
-    "synchronization": [
-      {
-        "id": "synchroImages",
-        "name": "Synchronize images",
-        "locale_name": {
-          "fr_FR": "Synchroniser images"
-        }
-      }
-    ],
-  
-    "resources": [
-      {
-        "id": "my_image.png",
-        "name": "Example image",
-        "locale_name": {
-          "fr_FR": "Image exemple"
-        },
-        "type": "Image",
-        "localization": false
       }
     ]
 }
