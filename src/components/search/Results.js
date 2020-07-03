@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import PandaBridge from 'pandasuite-bridge';
@@ -10,6 +10,7 @@ import ReactJson from 'react-json-view';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
+import debounce from 'lodash/debounce';
 
 function listFromSource(source) {
   if (isObject(source) && source.type === 'Collection') {
@@ -23,9 +24,25 @@ function listFromSource(source) {
   return [];
 }
 
+let searchResults = null;
+let triggerEventsDebounced = null;
+
 function Results(props) {
-  const { properties } = usePandaBridge();
+  const { properties } = usePandaBridge({
+    actions: {
+      validate: () => {
+        triggerEventsDebounced(searchResults);
+      },
+    },
+  });
   const { pattern, debug } = props;
+  const { debounceTime, liveValidation } = properties || {};
+
+  useMemo(() => {
+    triggerEventsDebounced = debounce((r) => {
+      PandaBridge.send('newSearchResults', [r]);
+    }, debounceTime === undefined ? 300 : debounceTime);
+  }, [debounceTime]);
 
   if (properties === undefined) {
     return null;
@@ -44,7 +61,11 @@ function Results(props) {
   );
 
   const results = fuse.search(pattern);
-  PandaBridge.send('newSearchResults', [isEmpty(pattern) ? null : results]);
+  searchResults = isEmpty(pattern) ? null : results;
+
+  if (liveValidation) {
+    triggerEventsDebounced(searchResults);
+  }
 
   if (debug) {
     return (

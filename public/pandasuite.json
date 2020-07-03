@@ -16,10 +16,45 @@
         "type": "String"
       },
       {
+        "id": "inputType",
+        "name": "Input Type",
+        "locale_name": {
+          "fr_FR": "Type d'entrée"
+        },
+        "type": "Dropdown",
+        "value": "text",
+        "items": [
+          {
+            "id": "text",
+            "name": "Text",
+            "locale_name": {
+              "fr_FR": "Texte"
+            }    
+          },
+          {
+            "id": "tel",
+            "name": "Number",
+            "locale_name": {
+              "fr_FR": "Nombre"
+            }    
+          }
+        ],
+        "separator": true
+      },
+      {
         "id": "isCaseSensitive",
         "name": "Case sensitive",
         "locale_name": {
           "fr_FR": "Sensible à la casse"
+        },
+        "type": "Boolean",
+        "value": false
+      },
+      {
+        "id": "useExtendedSearch",
+        "name": "Extended search",
+        "locale_name": {
+          "fr_FR": "Recherche étendue"
         },
         "type": "Boolean",
         "value": false
@@ -34,14 +69,23 @@
         "value": 0.6
       },
       {
-        "id": "useExtendedSearch",
-        "name": "Extended search",
+        "id": "liveValidation",
+        "name": "Live Validation",
         "locale_name": {
-          "fr_FR": "Recherche étendue"
+          "fr_FR": "Validation en direct"
         },
         "type": "Boolean",
-        "value": false,
+        "value": true,
         "separator": true
+      },
+      {
+        "id": "debounceTime",
+        "name": "Validation Delay (ms)",
+        "locale_name": {
+          "fr_FR": "Délai de validation (ms)"
+        },
+        "type": "Integer",
+        "value": 200
       },
       {
         "id": "keys",
@@ -61,19 +105,11 @@
   
     "actions": [
       {
-        "id": "changeColor",
-        "name": "Change Color",
-        "params": [
-          {
-            "id": "backgroundColor",
-            "name": "Background Color",
-            "locale_name": {
-              "fr_FR": "Couleur de fond"
-            },
-            "type": "String",
-            "value": "#FFFFFF"
-          }
-        ]
+        "id": "validate",
+        "name": "Validate",
+        "locale_name": {
+          "fr_FR": "Valider"
+        }
       }
     ]
 }
