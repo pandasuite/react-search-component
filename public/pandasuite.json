@@ -16,57 +16,93 @@
         "type": "String"
       },
       {
-        "id": "inputType",
-        "name": "Input Type",
-        "locale_name": {
-          "fr_FR": "Type d'entrée"
-        },
+        "id": "tokenize",
         "type": "Dropdown",
-        "value": "text",
+        "value": "forward",
         "items": [
           {
-            "id": "text",
-            "name": "Text",
+            "id": "strict",
+            "name": "Search whole words",
             "locale_name": {
-              "fr_FR": "Texte"
+              "fr_FR": "Recherchez mots entiers"
             }    
           },
           {
-            "id": "tel",
-            "name": "Number",
+            "id": "forward",
+            "name": "Search partial (forward direction)",
             "locale_name": {
-              "fr_FR": "Nombre"
+              "fr_FR": "Recherche partielle (vers l'avant)"
+            }    
+          },
+          {
+            "id": "reverse",
+            "name": "Search partial (both directions)",
+            "locale_name": {
+              "fr_FR": "Recherche partielle (dans les deux sens)"
+            }    
+          },
+          {
+            "id": "full",
+            "name": "Search every possible combination",
+            "locale_name": {
+              "fr_FR": "Recherchez toutes les combinaisons possibles"
             }    
           }
-        ],
+        ]
+      },
+      {
+        "id": "charset",
+        "type": "Dropdown",
+        "value": "latin:advanced",
+        "items": [
+          {
+            "id": "latin:default",
+            "name": "Case in-sensitive",
+            "locale_name": {
+              "fr_FR": "Non sensible à la casse"
+            }    
+          },
+          {
+            "id": "latin:simple",
+            "name": "Phonetic normalizations",
+            "locale_name": {
+              "fr_FR": "Normalisation phonétique"
+            }    
+          },
+          {
+            "id": "latin:advanced",
+            "name": "Phonetic normalizations et Literal transformations",
+            "locale_name": {
+              "fr_FR": "Normalisation phonétique et transformations littérales"
+            }    
+          },
+          {
+            "id": "latin:extra",
+            "name": "Phonetic normalizations et Soundex transformations",
+            "locale_name": {
+              "fr_FR": "Normalisation phonétique et transformations Soundex"
+            }    
+          }
+        ]
+      },
+      {
+        "id": "isNumber",
+        "name": "Numeric keyboard",
+        "locale_name": {
+          "fr_FR": "Clavier numérique"
+        },
+        "type": "Boolean",
+        "value": false,
         "separator": true
       },
       {
-        "id": "isCaseSensitive",
-        "name": "Case sensitive",
+        "id": "limit",
+        "name": "Limit results",
         "locale_name": {
-          "fr_FR": "Sensible à la casse"
+          "fr_FR": "Limiter les résultats"
         },
-        "type": "Boolean",
-        "value": false
-      },
-      {
-        "id": "useExtendedSearch",
-        "name": "Extended search",
-        "locale_name": {
-          "fr_FR": "Recherche étendue"
-        },
-        "type": "Boolean",
-        "value": false
-      },
-      {
-        "id": "threshold",
-        "name": "Matching threshold",
-        "locale_name": {
-          "fr_FR": "Seuil de correspondance"
-        },
-        "type": "Float",
-        "value": 0.6
+        "type": "Integer",
+        "value": 0
       },
       {
         "id": "liveValidation",

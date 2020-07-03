@@ -1,62 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef } from 'react';
 
 import PandaBridge from 'pandasuite-bridge';
 import { usePandaBridge } from 'pandasuite-bridge-react';
-import { useIntl } from 'react-intl';
 
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import isObject from 'lodash/isObject';
+import isArray from 'lodash/isArray';
+import debounce from 'lodash/debounce';
+import map from 'lodash/map';
+import fromPairs from 'lodash/fromPairs';
+import SearchInput from './SearchInput';
 
-import Keys from './Keys';
-import Results from './Results';
+require('flexsearch/dist/flexsearch.es5');
 
-function Search(props) {
-  const { pattern } = props;
-  const { properties } = usePandaBridge();
-  const intl = useIntl();
+const { FlexSearch } = window;
+
+function docsFromSource(source) {
+  if (isObject(source) && source.type === 'Collection') {
+    return source.value;
+  }
+  if (isArray(source)) {
+    return map(source, (doc, index) => ({ ...doc, id: index }));
+  }
+  return [];
+}
+
+let triggerEvents = () => null;
+
+function Search() {
+  const resultsEl = useRef(null);
+  const { properties } = usePandaBridge({
+    actions: {
+      validate: () => {
+        if (resultsEl.current) {
+          triggerEvents(resultsEl.current.getResults());
+        }
+      },
+    },
+  });
 
   if (properties === undefined) {
     return null;
   }
 
-  if (PandaBridge.isStudio) {
-    return (
-      <Accordion defaultActiveKey="0">
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle className="text-left p-0" as={Button} variant="link" eventKey="0">
-              {intl.formatMessage({ id: 'searchable.title' })}
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <Keys />
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle className="text-left p-0" as={Button} variant="link" eventKey="1">
-              {intl.formatMessage({ id: 'result.title' })}
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="1">
-            <Results pattern={pattern} debug />
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-    );
-  }
+  const {
+    debounceTime, keys, charset, tokenize, source,
+  } = properties;
+
+  triggerEvents = debounce((r) => {
+    PandaBridge.send('newSearchResults', [r]);
+  }, debounceTime === undefined ? 300 : debounceTime);
+
+  const field = fromPairs(
+    map(keys || [], (key) => [
+      key.name.join(':'), { charset, tokenize, boost: key.weight },
+    ]),
+  );
+
+  const index = new FlexSearch({ doc: { id: 'id', field } });
+  index.add(docsFromSource(source));
 
   return (
-    <Results pattern={pattern} />
+    <SearchInput
+      ref={resultsEl}
+      index={index}
+      onResults={triggerEvents}
+    />
   );
 }
-
-Search.propTypes = {
-  pattern: PropTypes.string.isRequired,
-};
 
 export default Search;
