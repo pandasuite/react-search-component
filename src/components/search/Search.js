@@ -19,7 +19,12 @@ function docsFromSource(source) {
     return source.value;
   }
   if (isArray(source)) {
-    return map(source, (doc, index) => ({ ...doc, id: index }));
+    return map(source, (doc, index) => {
+      if (!doc.id) {
+        return ({ ...doc, id: index.toString() });
+      }
+      return doc;
+    });
   }
   return [];
 }
