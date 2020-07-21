@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.0",
     "flexsearch": "nextapps-de/flexsearch#0.7.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "pandasuite-bridge": "^4.2.1",
     "pandasuite-bridge-react": "^2.0.1",
     "prop-types": "^15.7.2",
