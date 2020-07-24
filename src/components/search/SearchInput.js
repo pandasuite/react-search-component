@@ -36,11 +36,18 @@ const SearchInput = React.forwardRef((props, ref) => {
     setPattern(value);
   };
 
+  const keyPress = (event) => {
+    if (event.keyCode === 13) {
+      event.target.blur();
+    }
+  };
+
   return (
     <input
       type={isNumber ? 'tel' : 'text'}
       pattern={isNumber ? '[0-9]*' : null}
       onInput={handleChange}
+      onKeyDown={keyPress}
       value={pattern}
     />
   );
