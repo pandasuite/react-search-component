@@ -3,12 +3,15 @@ import React, { useRef } from 'react';
 import PandaBridge from 'pandasuite-bridge';
 import { usePandaBridge } from 'pandasuite-bridge-react';
 
+import { useSetRecoilState } from 'recoil';
+
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
-import debounce from 'lodash/debounce';
 import map from 'lodash/map';
 import fromPairs from 'lodash/fromPairs';
-import SearchInput from './SearchInput';
+
+import SearchPattern from './SearchPattern';
+import patternAtom from '../../atoms/Pattern';
 
 require('flexsearch/dist/flexsearch.es5');
 
@@ -29,16 +32,22 @@ function docsFromSource(source) {
   return [];
 }
 
-let triggerEvents = () => null;
+const triggerEvents = (r) => {
+  PandaBridge.send('results', [r]);
+  PandaBridge.send(PandaBridge.UPDATED, {
+    queryable: {
+      results: r,
+    },
+  });
+};
 
 function Search() {
   const resultsEl = useRef(null);
+  const setPattern = useSetRecoilState(patternAtom);
   const { properties } = usePandaBridge({
     actions: {
-      validate: () => {
-        if (resultsEl.current) {
-          triggerEvents(resultsEl.current.getResults());
-        }
+      search: ({ pattern: newPattern }) => {
+        setPattern(newPattern);
       },
     },
   });
@@ -48,12 +57,8 @@ function Search() {
   }
 
   const {
-    debounceTime, keys, charset, tokenize, source,
+    keys, charset, tokenize, source,
   } = properties;
-
-  triggerEvents = debounce((r) => {
-    PandaBridge.send('newSearchResults', [r]);
-  }, debounceTime === undefined ? 300 : debounceTime);
 
   const field = fromPairs(
     map(keys || [], (key) => [
@@ -65,7 +70,7 @@ function Search() {
   index.add(docsFromSource(source));
 
   return (
-    <SearchInput
+    <SearchPattern
       ref={resultsEl}
       index={index}
       onResults={triggerEvents}

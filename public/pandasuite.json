@@ -86,16 +86,6 @@
         ]
       },
       {
-        "id": "isNumber",
-        "name": "Numeric keyboard",
-        "locale_name": {
-          "fr_FR": "Clavier numérique"
-        },
-        "type": "Boolean",
-        "value": false,
-        "separator": true
-      },
-      {
         "id": "limit",
         "name": "Limit results",
         "locale_name": {
@@ -105,33 +95,15 @@
         "value": 0
       },
       {
-        "id": "liveValidation",
-        "name": "Live Validation",
-        "locale_name": {
-          "fr_FR": "Validation en direct"
-        },
-        "type": "Boolean",
-        "value": true,
-        "separator": true
-      },
-      {
-        "id": "debounceTime",
-        "name": "Validation Delay (ms)",
-        "locale_name": {
-          "fr_FR": "Délai de validation (ms)"
-        },
-        "type": "Integer",
-        "value": 200
-      },
-      {
         "id": "keys",
-        "hidden": true
+        "hidden": true,
+        "required": true
       }
     ],
   
     "events": [
       {
-        "id": "newSearchResults",
+        "id": "results",
         "name": "New search results",
         "locale_name": {
           "fr_FR": "Nouveaux résultats de recherche"
@@ -141,11 +113,18 @@
   
     "actions": [
       {
-        "id": "validate",
-        "name": "Validate",
+        "id": "search",
+        "name": "Search",
         "locale_name": {
-          "fr_FR": "Valider"
-        }
+          "fr_FR": "Rechercher"
+        },
+        "params": [
+          {
+            "id": "pattern",
+            "type": "String",
+            "bindable": true
+          }
+        ]
       }
     ]
 }

@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import { useRecoilValue } from 'recoil';
 
 import Keys from './Keys';
+import SearchInput from './SearchInput';
 import resultsAtom from '../../atoms/Results';
 
 function Configuration() {
@@ -43,16 +44,19 @@ function Configuration() {
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="1">
-          <ReactJson
-            src={results}
-            name={false}
-            onAdd={false}
-            onEdit={false}
-            onDelete={false}
-            enableClipboard={false}
-            displayObjectSize={false}
-            displayDataTypes={false}
-          />
+          <>
+            <SearchInput />
+            <ReactJson
+              src={results}
+              name={false}
+              onAdd={false}
+              onEdit={false}
+              onDelete={false}
+              enableClipboard={false}
+              displayObjectSize={false}
+              displayDataTypes={false}
+            />
+          </>
         </Accordion.Collapse>
       </Card>
     </Accordion>
