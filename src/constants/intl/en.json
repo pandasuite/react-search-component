@@ -1,6 +1,8 @@
 {
-  "searchable.title": "✨ Searchable keys configuration",
+  "searchable.title": "Configuration",
   "searchable.example.item.title": "Interactive example item:",
   "searchable.example.item.description": "Click directly on the field values to make them searchable",
-  "result.title": "🔍 Results test"
+  "searchable.example.source.description": "The configured source does not currently return any results",
+  "result.title": "Tests",
+  "result.placeholder": "Search..."
 }

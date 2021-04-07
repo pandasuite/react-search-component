@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { usePandaBridge } from 'pandasuite-bridge-react';
 
@@ -18,7 +17,7 @@ function App() {
 
   return (
     <IntlProvider>
-      <div className="App">
+      <div>
         <Search />
         <Configuration />
       </div>

@@ -1,6 +1,8 @@
 {
-  "searchable.title": "✨ Configuration des champs recherchables",
+  "searchable.title": "Configuration",
   "searchable.example.item.title": "Exemple interactif d'item :",
   "searchable.example.item.description": "Cliquez directement sur les valeurs des champs pour les rendre recherchables",
-  "result.title": "🔍 Test de résultats"
+  "searchable.example.source.description": "La source configurée ne renvoie actuellement aucun résultat",
+  "result.title": "Tests",
+  "result.placeholder": "Recherche..."
 }

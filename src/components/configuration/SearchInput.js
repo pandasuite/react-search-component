@@ -26,6 +26,8 @@ const SearchInput = () => {
       onInput={handleChange}
       onKeyDown={keyPress}
       value={pattern}
+      className="my-4 text-gray-500 border rounded focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent"
+      placeholder="Search..."
     />
   );
 };
