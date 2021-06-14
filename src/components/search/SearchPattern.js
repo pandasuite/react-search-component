@@ -5,6 +5,8 @@ import { usePandaBridge } from 'pandasuite-bridge-react';
 
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import flatten from 'lodash/flatten';
 
 import resultsAtom from '../../atoms/Results';
 import patternAtom from '../../atoms/Pattern';
@@ -17,7 +19,8 @@ const SearchPattern = React.forwardRef((props, ref) => {
 
   const { limit } = properties;
 
-  const results = index.search(pattern, { limit });
+  let results = index.search(pattern, { limit, enrich: true });
+  results = flatten(map(results, (result) => map(result.result, (r) => r.doc)));
   const searchResults = isEmpty(pattern) ? null : results;
   setResults(results);
 

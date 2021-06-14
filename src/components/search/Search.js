@@ -8,14 +8,12 @@ import { useSetRecoilState } from 'recoil';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import map from 'lodash/map';
-import fromPairs from 'lodash/fromPairs';
+import each from 'lodash/each';
 
 import SearchPattern from './SearchPattern';
 import patternAtom from '../../atoms/Pattern';
 
-require('flexsearch/dist/flexsearch.es5');
-
-const { FlexSearch } = window;
+const { Document } = require('flexsearch');
 
 function docsFromSource(source) {
   if (isObject(source) && source.type === 'Collection') {
@@ -60,14 +58,15 @@ function Search() {
     keys, charset, tokenize, source,
   } = properties;
 
-  const field = fromPairs(
-    map(keys || [], (key) => [
-      key.name.join(':'), { charset, tokenize, boost: key.weight },
-    ]),
-  );
+  const field = map(keys || [], (key) => ({
+    field: key.name.join(':'),
+    charset,
+    tokenize,
+    resolution: (key.weight || 9),
+  }));
 
-  const index = new FlexSearch({ doc: { id: 'id', field } });
-  index.add(docsFromSource(source));
+  const index = new Document({ document: { id: 'id', index: field, store: true }, cache: true });
+  each(docsFromSource(source), (doc) => index.add(doc));
 
   return (
     <SearchPattern

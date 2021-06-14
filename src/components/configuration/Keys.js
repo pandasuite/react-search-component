@@ -49,7 +49,7 @@ function Keys() {
 
     const key = {
       name: keyName,
-      weight: 1,
+      weight: 9,
     };
 
     if (!find(keys, (existingKey) => isEqual(existingKey, key))) {
@@ -65,7 +65,7 @@ function Keys() {
 
   const onWeightChange = (keyIndex) => (event) => {
     const newKeys = cloneDeep(keys);
-    newKeys[keyIndex].weight = Math.max(parseInt(event.target.value) || 1, 0);
+    newKeys[keyIndex].weight = Math.max(parseInt(event.target.value) || 9, 0);
     // eslint-disable-next-line no-param-reassign
     event.target.value = newKeys[keyIndex].weight;
     setProperty('keys', newKeys);

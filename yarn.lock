@@ -5371,9 +5371,10 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
-flexsearch@nextapps-de/flexsearch#0.7.0:
-  version "0.7.0"
-  resolved "https://codeload.github.com/nextapps-de/flexsearch/tar.gz/128395ffbe96fcb636d40b0828ca4521e2cf7669"
+flexsearch@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/flexsearch/-/flexsearch-0.7.1.tgz#9bba80582193e2bbeef73fdeee578acddb7fe31f"
+  integrity sha512-+nuTYgqWMA8JawcReboPniMuvy0ClxqU66oMh4YzNiQQrbzH6VdJZMF/kzAEPnpL64FiZfbGRixv+cz5YponhA==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -5819,6 +5820,11 @@ gzip-size@5.1.1:
   dependencies:
     duplexer "^0.1.1"
     pify "^4.0.1"
+
+hamt_plus@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/hamt_plus/-/hamt_plus-1.0.2.tgz#e21c252968c7e33b20f6a1b094cd85787a265601"
+  integrity sha1-4hwlKWjH4zsg9qGwlM2FeHomVgE=
 
 handle-thing@^2.0.0:
   version "2.0.1"
@@ -8780,22 +8786,20 @@ pako@~1.0.5:
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
 
-pandasuite-bridge-react@^2.0.7:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/pandasuite-bridge-react/-/pandasuite-bridge-react-2.0.7.tgz#5df7ad0b8bf363009b6e4b05f603bf57cdced992"
-  integrity sha512-xfqENNtEVb4VglvoRJ/EW3sHY5n9ula95nJRwVhQ/xP9ykTJYKi47X+6kB82PDwsgtzItH0bvLc4EC85a+Xljw==
+pandasuite-bridge-react@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/pandasuite-bridge-react/-/pandasuite-bridge-react-2.2.2.tgz#66a513ae7472dee8b5b8162a6a499087a9e686d5"
+  integrity sha512-nLns+45MV5kHpnl9dN0nVfNwlJfotrhUXQY7zdZCSAyo2s+LUimq1XeyrvBPmBtkysoaWeg/XCjopu7ISc0S6w==
   dependencies:
     html2canvas "^1.0.0-rc.5"
     lodash "^4.17.15"
-    pandasuite-bridge "^4.2.3"
-    prop-types "^15.7.2"
-    react ">=16.8.0"
-    recoil "^0.0.10"
+    pandasuite-bridge "^4.3.3"
+    recoil "^0.3.1"
 
-pandasuite-bridge@^4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/pandasuite-bridge/-/pandasuite-bridge-4.2.3.tgz#73b27bc8339a150d243e5749053ca4b0b0b72142"
-  integrity sha512-YhJ4t0Xv+REZjgVRl56Bzch/2m/FBfwSen8RMiMumqpX3vhGINrGmr+zZuS6xE/TXTrl46tUgzWDOomnNRzsSA==
+pandasuite-bridge@^4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/pandasuite-bridge/-/pandasuite-bridge-4.3.3.tgz#9ccdac9cc3748d75f6e3c1224b9dad66c3ae70cc"
+  integrity sha512-Th5rFmRuLtEdVYMERUEz9GoJ3n+/Ns8yHmlLh/qS2tHF79STNCGF/0Nk6iYiDyXasJ6o0feJHEy5V2+2oPFKHA==
 
 parallel-transform@^1.1.0:
   version "1.2.0"
@@ -10293,7 +10297,7 @@ react-textarea-autosize@^6.1.0:
   dependencies:
     prop-types "^15.6.0"
 
-react@>=16.8.0, react@^16.13.0:
+react@^16.13.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
   integrity sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
@@ -10388,10 +10392,12 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-recoil@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/recoil/-/recoil-0.0.10.tgz#679ab22306f559f8a63c46fd5ff5241539f9248f"
-  integrity sha512-+9gRqehw3yKETmoZbhSnWu4GO10HDb5xYf1CjLF1oXGK2uT6GX5Lu9mfTXwjxV/jXxEKx8MIRUUbgPxvbJ8SEw==
+recoil@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/recoil/-/recoil-0.3.1.tgz#40ef544160d19d76e25de8929d7e512eace13b90"
+  integrity sha512-KNA3DRqgxX4rRC8E7fc6uIw7BACmMPuraIYy+ejhE8tsw7w32CetMm8w7AMZa34wzanKKkev3vl3H7Z4s0QSiA==
+  dependencies:
+    hamt_plus "1.0.2"
 
 recursive-readdir@2.2.2:
   version "2.2.2"
