@@ -13,7 +13,10 @@
         "locale_name": {
           "fr_FR": "Source"
         },
-        "type": "String"
+        "type": "Array",
+        "bind": {
+          "style": "Button"
+        }
       },
       {
         "id": "tokenize",
