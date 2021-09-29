@@ -56,7 +56,7 @@
         "name": "Character set",
         "locale_name": {
           "fr_FR": "Jeu de caractères"
-        } 
+        },
         "type": "Dropdown",
         "value": "latin:advanced",
         "items": [
