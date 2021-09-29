@@ -10,9 +10,6 @@
       {
         "id": "source",
         "name": "Source",
-        "locale_name": {
-          "fr_FR": "Source"
-        },
         "type": "Array",
         "bind": {
           "style": "Button"
@@ -20,6 +17,7 @@
       },
       {
         "id": "tokenize",
+        "name": "Type",
         "type": "Dropdown",
         "value": "forward",
         "items": [
@@ -55,6 +53,10 @@
       },
       {
         "id": "charset",
+        "name": "Character set",
+        "locale_name": {
+          "fr_FR": "Jeu de caractères"
+        } 
         "type": "Dropdown",
         "value": "latin:advanced",
         "items": [
@@ -90,9 +92,9 @@
       },
       {
         "id": "limit",
-        "name": "Limit results",
+        "name": "Results limit",
         "locale_name": {
-          "fr_FR": "Limiter les résultats"
+          "fr_FR": "Limite des résultats"
         },
         "type": "Integer",
         "value": 0
@@ -107,9 +109,9 @@
     "events": [
       {
         "id": "results",
-        "name": "New search results",
+        "name": "New results",
         "locale_name": {
-          "fr_FR": "Nouveaux résultats de recherche"
+          "fr_FR": "Nouveaux résultats"
         }
       }
     ],
