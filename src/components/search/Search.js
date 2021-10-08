@@ -33,11 +33,11 @@ function docsFromSource(source) {
 }
 
 const triggerEvents = (r) => {
-  PandaBridge.send('results', [r]);
+  const queryable = { results: r };
+
+  PandaBridge.send('results', [queryable]);
   PandaBridge.send(PandaBridge.UPDATED, {
-    queryable: {
-      results: r,
-    },
+    queryable,
   });
 };
 

@@ -112,6 +112,15 @@
         "name": "New results",
         "locale_name": {
           "fr_FR": "Nouveaux résultats"
+        },
+        "queryable": {
+          "results": [],
+          "__desc_results": {
+            "name": "Search results",
+            "locale_name": {
+              "fr_FR": "Résultats de la recherche"
+            }
+          }
         }
       }
     ],
@@ -131,6 +140,16 @@
           }
         ]
       }
-    ]
+    ],
+
+    "queryable": {
+      "results": [],
+      "__desc_results": {
+        "name": "Search results",
+        "locale_name": {
+          "fr_FR": "Résultats de la recherche"
+        }
+      }
+    }
 }
   
