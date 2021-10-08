@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 
 import { usePandaBridge } from 'pandasuite-bridge-react';
+import PandaBridge from 'pandasuite-bridge';
 
 import IntlProvider from './components/IntlProvider';
 import Configuration from './components/configuration/Configuration';
@@ -15,8 +16,10 @@ function App() {
     return null;
   }
 
+  const { [PandaBridge.LANGUAGE]: language } = properties;
+
   return (
-    <IntlProvider>
+    <IntlProvider language={language}>
       <div>
         <Search />
         <Configuration />
