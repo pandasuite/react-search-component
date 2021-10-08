@@ -12,7 +12,7 @@
         "name": "Source",
         "type": "Bind",
         "restrict": {
-          "output": ["Collection"]
+          "output": ["Array", "Collection"]
         }
       },
       {
