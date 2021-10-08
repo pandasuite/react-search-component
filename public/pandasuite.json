@@ -10,9 +10,9 @@
       {
         "id": "source",
         "name": "Source",
-        "type": "Array",
-        "bind": {
-          "style": "Button"
+        "type": "Bind",
+        "restrict": {
+          "output": ["Collection"]
         }
       },
       {
