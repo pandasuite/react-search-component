@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build && rm -f build/static/js/*.map && cd build && zip -r -X '../pandasuite-component.zip' *",
+    "build": "rm -f ./pandasuite-component.zip && GENERATE_SOURCEMAP=false craco build && rm -f build/static/js/*.map && cd build && zip -r -X '../pandasuite-component.zip' *",
     "test": "craco test",
     "eject": "react-scripts eject",
     "release": "yarn build && release-it --no-npm.publish"
