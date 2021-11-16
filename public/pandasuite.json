@@ -137,7 +137,11 @@
           {
             "id": "pattern",
             "type": "String",
-            "bindable": true
+            "bindable": true,
+            "name": "Search term",
+            "locale_name": {
+              "fr_FR": "Terme de recherche"
+            }
           }
         ]
       }
