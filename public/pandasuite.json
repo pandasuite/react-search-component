@@ -18,7 +18,10 @@
       },
       {
         "id": "tokenize",
-        "name": "Type",
+        "name": "Tokenisation",
+        "locale_name": {
+          "fr_FR": "Tokenisation"
+        },
         "type": "Dropdown",
         "value": "forward",
         "items": [
@@ -54,9 +57,9 @@
       },
       {
         "id": "charset",
-        "name": "Character set",
+        "name": "Match",
         "locale_name": {
-          "fr_FR": "Jeu de caractères"
+          "fr_FR": "Correspondances"
         },
         "type": "Dropdown",
         "value": "latin:advanced",
@@ -102,6 +105,10 @@
       },
       {
         "id": "keys",
+        "name": "Searchable fields",
+        "locale_name": {
+          "fr_FR": "Champs recherchables"
+        },
         "hidden": true,
         "required": true
       }
