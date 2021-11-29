@@ -109,7 +109,7 @@
         "locale_name": {
           "fr_FR": "Champs recherchables"
         },
-        "hidden": true,
+        "type": "Edit",
         "required": true
       }
     ],
