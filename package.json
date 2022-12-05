@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "ahooks": "^3.7.2",
     "flexsearch": "^0.7.31",
     "lodash": "^4.17.19",
     "pandasuite-bridge": "^4.5.0",
