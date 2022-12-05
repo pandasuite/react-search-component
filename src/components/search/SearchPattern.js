@@ -1,15 +1,37 @@
-import React, { useImperativeHandle } from 'react';
-import PropTypes from 'prop-types';
-
 import { usePandaBridge } from 'pandasuite-bridge-react';
-
 import { useSetRecoilState, useRecoilValue } from 'recoil';
+
 import isEmpty from 'lodash/isEmpty';
+import flatMap from 'lodash/flatMap';
+import map from 'lodash/map';
 
 import resultsAtom from '../../atoms/Results';
 import patternAtom from '../../atoms/Pattern';
 
-const SearchPattern = React.forwardRef((props, ref) => {
+const getCompatResultsWithLimit = (rawSearch, limit, results = [], startIndex = 0) => {
+  if (rawSearch.length === 0) {
+    return results;
+  }
+  if (limit <= 0 && results.length === 0) {
+    return flatMap(rawSearch, (s) => flatMap(s.result, (r) => r.doc));
+  }
+
+  const startResultsLength = results.length;
+  const limitBySearch = Math.ceil((limit - startResultsLength) / rawSearch.length);
+
+  map(rawSearch, (search) => {
+    results.push(...flatMap(
+      search.result.slice(startIndex, startIndex + limitBySearch), (r) => r.doc,
+    ));
+  });
+
+  if (results.length < limit && results.length !== startResultsLength) {
+    return getCompatResultsWithLimit(rawSearch, limit, results, startIndex + limitBySearch);
+  }
+  return results.slice(0, limit);
+};
+
+function SearchPattern(props, ref) {
   const { index, onResults } = props;
   const { properties } = usePandaBridge();
   const pattern = useRecoilValue(patternAtom);
@@ -17,27 +39,14 @@ const SearchPattern = React.forwardRef((props, ref) => {
 
   const { limit } = properties;
 
-  const results = index.search(pattern, { limit });
+  const rawSearch = index.search(pattern, { enrich: true, limit });
+  const results = getCompatResultsWithLimit(rawSearch, limit);
+
   const searchResults = isEmpty(pattern) ? null : results;
   setResults(results);
-
-  const getResults = () => searchResults;
-  useImperativeHandle(ref, () => ({
-    getResults,
-  }));
-
   onResults(searchResults);
 
   return null;
-});
-
-SearchPattern.defaultProps = {
-  onResults: () => null,
-};
-
-SearchPattern.propTypes = {
-  index: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  onResults: PropTypes.func,
-};
+}
 
 export default SearchPattern;
