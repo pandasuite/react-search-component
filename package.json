@@ -57,7 +57,7 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "postcss": "^7",
-    "release-it": "^13.0.1",
+    "release-it": "^15.6.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "release-it": {
