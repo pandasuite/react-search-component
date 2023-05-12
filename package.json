@@ -11,7 +11,7 @@
     "ahooks": "^3.7.2",
     "flexsearch": "^0.7.31",
     "lodash": "^4.17.19",
-    "pandasuite-bridge": "^4.5.0",
+    "pandasuite-bridge": "^4.5.1",
     "pandasuite-bridge-react": "^2.6.0",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",

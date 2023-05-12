@@ -8843,6 +8843,13 @@ pandasuite-bridge@^4.5.0:
   dependencies:
     lodash "^4.17.21"
 
+pandasuite-bridge@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/pandasuite-bridge/-/pandasuite-bridge-4.5.1.tgz#9d7ad5cc24a8bfacf596ca758f96428709acfd1f"
+  integrity sha512-TdqPlJFqNS2FpKKea56xFlRlM4HPiBuoXvZJ8lcHFHf/RDbLmCxzSKPlHGDJaKeb/vd9hoIWNyr4t5Jc7y6qxQ==
+  dependencies:
+    lodash "^4.17.21"
+
 parallel-transform@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/parallel-transform/-/parallel-transform-1.2.0.tgz#9049ca37d6cb2182c3b1d2c720be94d14a5814fc"

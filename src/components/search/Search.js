@@ -29,14 +29,31 @@ function docsFromSource(source) {
   return [];
 }
 
-const triggerEvents = (r) => {
-  const queryable = { results: r };
-
-  PandaBridge.send('results', [queryable]);
-  PandaBridge.send(PandaBridge.UPDATED, {
-    queryable,
-  });
-};
+function typedResultsFromSource(r, source, sourceBind) {
+  if (isObject(source) && source.type === 'Collection' && sourceBind) {
+    return {
+      type: 'References',
+      schema: {
+        path: {
+          value: sourceBind,
+        },
+      },
+      value: map(PandaBridge.isStudio ? source.value : r, (doc) => ({
+        type: 'Reference',
+        schema: {
+          path: {
+            value: sourceBind,
+          },
+        },
+        value: doc.id,
+      })),
+    };
+  }
+  if (PandaBridge.isStudio && isArray(source)) {
+    return source;
+  }
+  return r;
+}
 
 function Search() {
   const setPattern = useSetRecoilState(patternAtom);
@@ -53,8 +70,20 @@ function Search() {
   }
 
   const {
-    keys, charset, tokenize, source,
+    keys, charset, tokenize, source, [PandaBridge.BINDABLE]: bindable,
   } = properties;
+  const { source: sourceBind } = bindable || {};
+
+  const triggerEvents = (r) => {
+    const queryable = {
+      results: typedResultsFromSource(r, source, sourceBind),
+    };
+
+    PandaBridge.send('results', [queryable]);
+    PandaBridge.send(PandaBridge.UPDATED, {
+      queryable,
+    });
+  };
 
   const field = map(keys || [], (key) => ({
     field: key.name.join(':'),
