@@ -85,7 +85,7 @@ function Search() {
     });
   };
 
-  const field = map(keys || [], (key) => ({
+  const fields = map(keys || [], (key) => ({
     field: key.name.join(':'),
     charset,
     tokenize,
@@ -94,7 +94,7 @@ function Search() {
 
   const index = new Document({
     document: {
-      id: 'id', index: field, store: true, worker: true,
+      id: 'id', index: fields, store: true, worker: true,
     },
   });
   docsFromSource(source).forEach((d) => {
