@@ -23,14 +23,12 @@ const getCompatResultsWithLimit = (rawSearch, limit, results = [], startIndex = 
   };
 
   if (limit <= 0 && results.length === 0) {
-    const docs = [];
-
     each(rawSearch, (search) => {
       each(search.result, (r) => {
         addDoc(r);
       });
     });
-    return docs;
+    return results;
   }
 
   const startResultsLength = results.length;
