@@ -1,167 +1,212 @@
 {
-    "version": "2.0.0",
-    "main": "",
-  
-    "system": {
-      "markers": false
+  "meta": {
+    "stype": "search",
+    "componentURL": "https://github.com/pandasuite/react-search-component/force-html",
+    "description": "Flexible full-text search engine that indexes any bound data source (collections, datastores, HTTP responses, app texts). Supports configurable tokenization, multi-language character sets, and fuzzy matching.",
+    "locale_description": {
+      "fr_FR": "Moteur de recherche plein texte flexible qui indexe n'importe quelle source de données liée (collections, datastores, réponses HTTP, textes de l'application). Supporte la tokenisation configurable, les jeux de caractères multilingues et la correspondance floue."
+    }
+  },
+  "version": "2.0.0",
+  "main": "",
+  "system": {
+    "markers": false
+  },
+  "properties": [
+    {
+      "id": "source",
+      "name": "Source",
+      "type": "Bind",
+      "restrict": {
+        "output": [
+          "Array",
+          "Collection"
+        ]
+      },
+      "required": true,
+      "description": "Data source to index for searching. Accepts any bound array or collection (datastore, HTTP response, app texts, etc.).",
+      "locale_description": {
+        "fr_FR": "Source de données à indexer pour la recherche. Accepte tout tableau ou collection liée (datastore, réponse HTTP, textes de l'application, etc.)."
+      }
     },
-
-    "properties": [
-      {
-        "id": "source",
-        "name": "Source",
-        "type": "Bind",
-        "restrict": {
-          "output": ["Array", "Collection"]
-        },
-        "required": true
+    {
+      "id": "tokenize",
+      "name": "Tokenisation",
+      "locale_name": {
+        "fr_FR": "Tokenisation"
       },
-      {
-        "id": "tokenize",
-        "name": "Tokenisation",
-        "locale_name": {
-          "fr_FR": "Tokenisation"
-        },
-        "type": "Dropdown",
-        "value": "forward",
-        "items": [
-          {
-            "id": "strict",
-            "name": "Search whole words",
-            "locale_name": {
-              "fr_FR": "Recherchez mots entiers"
-            }    
-          },
-          {
-            "id": "forward",
-            "name": "Search partial (forward direction)",
-            "locale_name": {
-              "fr_FR": "Recherche partielle (vers l'avant)"
-            }    
-          },
-          {
-            "id": "reverse",
-            "name": "Search partial (both directions)",
-            "locale_name": {
-              "fr_FR": "Recherche partielle (dans les deux sens)"
-            }    
-          },
-          {
-            "id": "full",
-            "name": "Search every possible combination",
-            "locale_name": {
-              "fr_FR": "Recherchez toutes les combinaisons possibles"
-            }    
+      "type": "Dropdown",
+      "value": "forward",
+      "items": [
+        {
+          "id": "strict",
+          "name": "Search whole words",
+          "locale_name": {
+            "fr_FR": "Recherchez mots entiers"
           }
-        ]
-      },
-      {
-        "id": "charset",
-        "name": "Match",
-        "locale_name": {
-          "fr_FR": "Correspondances"
         },
-        "type": "Dropdown",
-        "value": "latin:advanced",
-        "items": [
-          {
-            "id": "latin:default",
-            "name": "Case in-sensitive",
-            "locale_name": {
-              "fr_FR": "Non sensible à la casse"
-            }    
-          },
-          {
-            "id": "latin:simple",
-            "name": "Phonetic normalizations",
-            "locale_name": {
-              "fr_FR": "Normalisation phonétique"
-            }    
-          },
-          {
-            "id": "latin:advanced",
-            "name": "Phonetic normalizations et Literal transformations",
-            "locale_name": {
-              "fr_FR": "Normalisation phonétique et transformations littérales"
-            }    
-          },
-          {
-            "id": "latin:extra",
-            "name": "Phonetic normalizations et Soundex transformations",
-            "locale_name": {
-              "fr_FR": "Normalisation phonétique et transformations Soundex"
-            }    
+        {
+          "id": "forward",
+          "name": "Search partial (forward direction)",
+          "locale_name": {
+            "fr_FR": "Recherche partielle (vers l'avant)"
           }
-        ]
-      },
-      {
-        "id": "limit",
-        "name": "Results limit",
-        "locale_name": {
-          "fr_FR": "Limite des résultats"
         },
-        "type": "Integer",
-        "value": 0
-      },
-      {
-        "id": "keys",
-        "name": "Searchable fields",
-        "locale_name": {
-          "fr_FR": "Champs recherchables"
+        {
+          "id": "reverse",
+          "name": "Search partial (both directions)",
+          "locale_name": {
+            "fr_FR": "Recherche partielle (dans les deux sens)"
+          }
         },
-        "type": "Edit",
-        "required": true
-      }
-    ],
-  
-    "events": [
-      {
-        "id": "results",
-        "name": "New results",
-        "locale_name": {
-          "fr_FR": "Nouveaux résultats"
-        },
-        "queryable": {
-          "results": [],
-          "__desc_results": {
-            "name": "Search results",
-            "locale_name": {
-              "fr_FR": "Résultats de la recherche"
-            }
+        {
+          "id": "full",
+          "name": "Search every possible combination",
+          "locale_name": {
+            "fr_FR": "Recherchez toutes les combinaisons possibles"
           }
         }
+      ],
+      "description": "Tokenization strategy controlling how search terms are matched: whole words, partial forward, partial both directions, or all combinations.",
+      "locale_description": {
+        "fr_FR": "Stratégie de tokenisation contrôlant comment les termes de recherche sont comparés : mots entiers, partiel vers l'avant, partiel dans les deux sens, ou toutes les combinaisons."
       }
-    ],
-  
-    "actions": [
-      {
-        "id": "search",
-        "name": "Search",
-        "locale_name": {
-          "fr_FR": "Rechercher"
-        },
-        "params": [
-          {
-            "id": "pattern",
-            "type": "String",
-            "bindable": true,
-            "name": "Search term",
-            "locale_name": {
-              "fr_FR": "Terme de recherche"
-            }
+    },
+    {
+      "id": "charset",
+      "name": "Match",
+      "locale_name": {
+        "fr_FR": "Correspondances"
+      },
+      "type": "Dropdown",
+      "value": "latin:advanced",
+      "items": [
+        {
+          "id": "latin:default",
+          "name": "Case in-sensitive",
+          "locale_name": {
+            "fr_FR": "Non sensible à la casse"
           }
-        ]
-      }
-    ],
-
-    "queryable": {
-      "results": [],
-      "__desc_results": {
-        "name": "Search results",
-        "locale_name": {
-          "fr_FR": "Résultats de la recherche"
+        },
+        {
+          "id": "latin:simple",
+          "name": "Phonetic normalizations",
+          "locale_name": {
+            "fr_FR": "Normalisation phonétique"
+          }
+        },
+        {
+          "id": "latin:advanced",
+          "name": "Phonetic normalizations et Literal transformations",
+          "locale_name": {
+            "fr_FR": "Normalisation phonétique et transformations littérales"
+          }
+        },
+        {
+          "id": "latin:extra",
+          "name": "Phonetic normalizations et Soundex transformations",
+          "locale_name": {
+            "fr_FR": "Normalisation phonétique et transformations Soundex"
+          }
         }
+      ],
+      "description": "Character matching mode: simple Latin, advanced Latin with accent folding, CJK support, Arabic, Cyrillic, or phonetic Soundex matching.",
+      "locale_description": {
+        "fr_FR": "Mode de correspondance des caractères : latin simple, latin avancé avec normalisation des accents, support CJK, arabe, cyrillique ou correspondance phonétique Soundex."
+      }
+    },
+    {
+      "id": "limit",
+      "name": "Results limit",
+      "locale_name": {
+        "fr_FR": "Limite des résultats"
+      },
+      "type": "Integer",
+      "value": 0,
+      "description": "Maximum number of search results to return (0 for unlimited).",
+      "locale_description": {
+        "fr_FR": "Nombre maximum de résultats de recherche à retourner (0 pour illimité)."
+      }
+    },
+    {
+      "id": "keys",
+      "name": "Searchable fields",
+      "locale_name": {
+        "fr_FR": "Champs recherchables"
+      },
+      "type": "Edit",
+      "required": true,
+      "description": "Searchable fields from the data source to include in the index. Determines which data fields are matched against search queries.",
+      "locale_description": {
+        "fr_FR": "Champs recherchables de la source de données à inclure dans l'index. Détermine quels champs de données sont comparés aux requêtes de recherche."
       }
     }
+  ],
+  "events": [
+    {
+      "id": "results",
+      "name": "New results",
+      "locale_name": {
+        "fr_FR": "Nouveaux résultats"
+      },
+      "queryable": {
+        "results": [],
+        "__desc_results": {
+          "name": "Search results",
+          "locale_name": {
+            "fr_FR": "Résultats de la recherche"
+          },
+          "description": "Array of items from the data source matching the search query.",
+          "locale_description": {
+            "fr_FR": "Tableau des éléments de la source de données correspondant à la requête de recherche."
+          }
+        }
+      },
+      "description": "Fires when new search results are available. Exposes the matching items as a bindable array.",
+      "locale_description": {
+        "fr_FR": "Se déclenche quand de nouveaux résultats de recherche sont disponibles. Expose les éléments correspondants comme un tableau liable."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "search",
+      "name": "Search",
+      "locale_name": {
+        "fr_FR": "Rechercher"
+      },
+      "params": [
+        {
+          "id": "pattern",
+          "type": "String",
+          "bindable": true,
+          "name": "Search term",
+          "locale_name": {
+            "fr_FR": "Terme de recherche"
+          },
+          "description": "Search query text to match against the indexed fields.",
+          "locale_description": {
+            "fr_FR": "Texte de requête de recherche à comparer aux champs indexés."
+          }
+        }
+      ],
+      "description": "Execute a search query against the indexed data source and update results.",
+      "locale_description": {
+        "fr_FR": "Exécuter une requête de recherche dans la source de données indexée et mettre à jour les résultats."
+      }
+    }
+  ],
+  "queryable": {
+    "results": [],
+    "__desc_results": {
+      "name": "Search results",
+      "locale_name": {
+        "fr_FR": "Résultats de la recherche"
+      },
+      "description": "Current search results array, available for data binding to a Collection component for display.",
+      "locale_description": {
+        "fr_FR": "Tableau des résultats de recherche actuels, disponible pour le binding de données vers un composant Collection pour l'affichage."
+      }
+    }
+  }
 }
-  
