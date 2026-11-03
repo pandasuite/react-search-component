@@ -60,7 +60,8 @@ function Search() {
   const { properties } = usePandaBridge({
     actions: {
       search: ({ pattern: newPattern }) => {
-        setPattern(newPattern);
+        // The pattern is declared as a String, but a bound value can arrive as a number
+        setPattern(newPattern == null ? newPattern : String(newPattern));
       },
     },
   });
