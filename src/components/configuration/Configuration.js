@@ -11,6 +11,7 @@ import { useDebounce } from 'ahooks';
 import Keys from './Keys';
 import SearchInput from './SearchInput';
 import resultsAtom from '../../atoms/Results';
+import useJsonViewTheme from '../../hooks/useJsonViewTheme';
 
 function Configuration() {
   const { properties } = usePandaBridge();
@@ -18,6 +19,7 @@ function Configuration() {
   const results = useRecoilValue(resultsAtom);
   const debouncedResults = useDebounce(results, { wait: 300 });
   const [isConfTab, setConfTab] = useState(true);
+  const jsonViewTheme = useJsonViewTheme();
 
   if (properties === undefined || !PandaBridge.isStudio) {
     return null;
@@ -66,6 +68,7 @@ function Configuration() {
                   </div>
                   <ReactJson
                     src={debouncedResults}
+                    theme={jsonViewTheme}
                     name={false}
                     onAdd={false}
                     onEdit={false}

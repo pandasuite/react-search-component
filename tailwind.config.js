@@ -19,5 +19,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('pandasuite-bridge/studio-theme'), // eslint-disable-line global-require
+  ],
 };
