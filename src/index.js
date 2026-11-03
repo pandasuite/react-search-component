@@ -4,6 +4,7 @@ import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { RecoilEnv } from 'recoil';
+import PandaBridge from 'pandasuite-bridge';
 import { PandaBridgeRoot } from 'pandasuite-bridge-react';
 import './index.css';
 import App from './App';
@@ -13,5 +14,7 @@ import App from './App';
 // notifications of recoil 0.3; this must run before the first render.
 RecoilEnv.RECOIL_GKS_ENABLED.delete('recoil_sync_external_store');
 RecoilEnv.RECOIL_GKS_ENABLED.delete('recoil_suppress_rerender_in_callback');
+
+PandaBridge.followStudioAppearance();
 
 ReactDOM.render(<PandaBridgeRoot><App /></PandaBridgeRoot>, document.getElementById('root'));

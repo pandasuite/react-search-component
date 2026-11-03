@@ -13,6 +13,8 @@ import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import cloneDeep from 'lodash/cloneDeep';
 
+import useJsonViewTheme from '../../hooks/useJsonViewTheme';
+
 function sourceToSchema(source) {
   // return source[random(0, source.length - 1)];
   return source[0];
@@ -33,6 +35,7 @@ function schemaFromSource(source) {
 function Keys() {
   const { properties, setProperty } = usePandaBridge();
   const intl = useIntl();
+  const jsonViewTheme = useJsonViewTheme();
 
   if (properties === undefined) {
     return null;
@@ -142,6 +145,7 @@ function Keys() {
       <div className="mt-5">
         <ReactJson
           src={schema}
+          theme={jsonViewTheme}
           name={false}
           onAdd={false}
           onEdit={false}
